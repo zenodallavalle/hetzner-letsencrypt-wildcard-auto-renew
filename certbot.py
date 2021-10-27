@@ -13,8 +13,8 @@ def get_acme_challenge(domain):
         '88.198.229.192',
         '193.47.99.5',
     ]
-    records = my_resolver.resolve(f'_acme-challenge.{domain}', 'TXT')
     try:
+        records = my_resolver.resolve(f'_acme-challenge.{domain}', 'TXT')
         return records[0].to_text().replace('"', '')
     except Exception:
         return ''
@@ -30,14 +30,15 @@ def renew(zone, record, domain, test_mode=False):
     child.logfile_read = sys.stdout
 
     ex = child.expect([
+        "Before continuing",
+        'Simulating a certificate request for\d*',
         "Certificate not yet due for renewal"
-        'Simulating a certificate request for\d*' if test_mode else "Before continuing\d*",
     ])
 
-    if ex == 0:
+    if ex == 2:
         print("Certificate not yet due for renewal. Exiting.")
         sys.exit(0)
-    elif ex == 1:
+    else:
         i = 0
         child.expect('\d*with the following value:\d*')
         while i < 10:

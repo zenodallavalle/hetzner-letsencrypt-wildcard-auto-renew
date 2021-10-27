@@ -30,7 +30,8 @@ def renew(zone, record, domain, test_mode=False):
     ])
 
     if ex == 2:
-        print("Certificate not yet due for renewal. Exiting.")
+        print("\nCertificate not yet due for renewal. Exiting.")
+        sys.stdout.flush()
         sys.exit(0)
     else:
         i = 0
@@ -40,21 +41,25 @@ def renew(zone, record, domain, test_mode=False):
             if new:
                 break
         else:
-            print('Error while trying to read value, abort...')
+            print('\nError while trying to read value, abort...')
+            sys.stdout.flush()
             sys.exit(0)
 
-        print(f'Updating/creating record with value: {new}')
+        print(f'\nUpdating/creating record with value: {new}')
+        sys.stdout.flush()
 
         record = hetzner.save_acme_record(zone, record, new)['record']
 
-        print('Hetzner DNS record updated!')
+        print('\nHetzner DNS record updated!')
+        sys.stdout.flush()
 
         i = 0
         while i < 100:
             got_value = get_acme_challenge(domain)
-            print('.', end='')
+            print('\n.', end='')
             if got_value == new:
                 print('')
+                sys.stdout.flush()
                 break
             sleep(1)
             i += 1
@@ -64,6 +69,7 @@ def renew(zone, record, domain, test_mode=False):
         ex = child.expect(
             'The dry run was successful.' if test_mode else 'Congratulations!')
 
-        print('Finished, cleaning up...')
+        print('\nFinished, cleaning up...')
+        sys.stdout.flush()
 
         hetzner.delete_acme_record(zone, record)

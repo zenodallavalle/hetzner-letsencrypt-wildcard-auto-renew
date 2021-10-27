@@ -18,7 +18,7 @@ def main():
     domain = sys.argv[1]
     zone = hetzner.get_zone(domain)
     record = hetzner.get_acme_record(zone)
-    certbot.renew(zone, record, domain)
+    certbot.renew(zone, record, domain, test_mode=True)
 
 
 if __name__ == "__main__":

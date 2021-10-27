@@ -7,14 +7,8 @@ import hetzner
 
 
 def get_acme_challenge(domain):
-    my_resolver = resolver.Resolver()
-    my_resolver.nameservers = [
-        '213.133.100.98',
-        '88.198.229.192',
-        '193.47.99.5',
-    ]
     try:
-        records = my_resolver.resolve(f'_acme-challenge.{domain}', 'TXT')
+        records = resolver.resolve(f'_acme-challenge.{domain}', 'TXT')
         return records[0].to_text().replace('"', '')
     except Exception:
         return ''

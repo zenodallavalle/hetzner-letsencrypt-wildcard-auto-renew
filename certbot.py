@@ -30,14 +30,14 @@ def renew(zone, record, domain, test_mode=False):
     child.logfile_read = sys.stdout
 
     ex = child.expect([
-        "Before continuing",
-        'Simulating a certificate request for\d*' if test_mode else "Certificate not yet due for renewal"
+        "Certificate not yet due for renewal"
+        'Simulating a certificate request for\d*' if test_mode else "Before continuing\d*",
     ])
 
-    if ex == 1:
+    if ex == 0:
         print("Certificate not yet due for renewal. Exiting.")
         sys.exit(0)
-    else:
+    elif ex == 1:
         i = 0
         child.expect('\d*with the following value:\d*')
         while i < 10:

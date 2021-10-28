@@ -34,4 +34,5 @@ You can run the script monthly. If the certbot-auto returns a `Certificate is no
 
 # Disclaimer
 
-Even though the scripts are used in production on my system and are tested on a Ubuntu 18.04.02 system I do neither claim correctness nor completeness on these scripts. Use at your own risk!
+<s>Even though the scripts are used in production on my system and are tested on a Ubuntu 18.04.02 system I do neither claim correctness nor completeness on these scripts. Use at your own risk!</s>
+I didn't test it yet.

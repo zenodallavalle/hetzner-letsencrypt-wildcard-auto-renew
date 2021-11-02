@@ -50,13 +50,13 @@ def renew(zone, record, domain, test_mode=False):
 
         record = hetzner.save_acme_record(zone, record, new)['record']
 
-        print('\nHetzner DNS record updated!')
+        print('\nHetzner DNS record updated!\n')
         sys.stdout.flush()
 
         i = 0
         while i < 100:
             got_value = get_acme_challenge(domain)
-            print('\n.', end='')
+            print('.', end='')
             if got_value == new:
                 print('')
                 sys.stdout.flush()

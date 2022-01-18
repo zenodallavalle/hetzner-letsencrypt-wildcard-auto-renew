@@ -35,9 +35,10 @@ def renew(zone, record, domain, test_mode=False):
         sys.exit(0)
     else:
         i = 0
-        child.expect('\d*with the following value:\d*')
+        child.expect('with the following value:')
         while i < 10:
             new = child.readline().strip()
+            print('NEW IS new:', new)
             if new:
                 break
         else:

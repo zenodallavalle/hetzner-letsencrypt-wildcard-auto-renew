@@ -24,7 +24,7 @@ def renew(zone, record, domain, test_mode=False):
     child.logfile_read = sys.stdout
 
     ex = child.expect([
-        "Before continuing",
+        "Please deploy a DNS TXT\d*",
         'Simulating a certificate request for\d*',
         "Certificate not yet due for renewal"
     ])
@@ -35,7 +35,7 @@ def renew(zone, record, domain, test_mode=False):
         sys.exit(0)
     else:
         i = 0
-        child.expect('with the following value:')
+        child.expect('\d*with the following value:\d*')
         while i < 10:
             new = child.readline().strip()
             print('NEW IS new:', new)

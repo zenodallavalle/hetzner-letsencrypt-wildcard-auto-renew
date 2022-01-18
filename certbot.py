@@ -38,7 +38,6 @@ def renew(zone, record, domain, test_mode=False):
         child.expect('\d*with the following value:\d*')
         while i < 10:
             new = child.readline().strip()
-            print('NEW IS new:', new)
             if new:
                 break
         else:
@@ -68,7 +67,7 @@ def renew(zone, record, domain, test_mode=False):
         child.sendline()
 
         ex = child.expect(
-            'The dry run was successful.' if test_mode else 'Congratulations!')
+            '\d*The dry run was successful.\d*' if test_mode else '\d*Congratulations!\d*')
 
         print('\nFinished, cleaning up...')
         sys.stdout.flush()

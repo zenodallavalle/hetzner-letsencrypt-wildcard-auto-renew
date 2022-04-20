@@ -89,7 +89,7 @@ def save_acme_record(zone, record, value):
         sys.exit("HTTP Request failed")
 
 
-def delete_acme_record(zone, record):
+def delete_acme_record(record):
     try:
         response = requests.delete(
             url=f"{BASE_URL}/records/{record['id']}",

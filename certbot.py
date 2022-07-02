@@ -67,7 +67,7 @@ def renew(zone, record, domain, test_mode=False):
         child.sendline()
 
         ex = child.expect(
-            '\d*The dry run was successful.\d*' if test_mode else '\d*Successfully received certificate!\d*')
+            '\d*The dry run was successful\d*' if test_mode else '\d*Successfully received certificate\d*')
 
         print('\nFinished, cleaning up...')
         sys.stdout.flush()

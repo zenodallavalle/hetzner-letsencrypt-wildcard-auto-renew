@@ -1,5 +1,4 @@
 import sys
-import os
 from dotenv import load_dotenv
 
 # load_dotenv must be called before importing hetzner module as importing hetzner module will check the presence of HETZNER_TOKEN in os.environ

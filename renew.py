@@ -2,17 +2,20 @@ import hetzner
 import certbot
 import sys
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def main():
     print("Let's Encrypt Wildcard Auto-Renewal with Hetzner\n")
 
-    if (len(sys.argv) != 2):
+    if len(sys.argv) != 2:
         print("Domain name is missing\n")
         print("Usage: python renew.py example.com")
         exit()
 
-    if (not "HETZNER_TOKEN" in os.environ):
+    if not 'HETZNER_TOKEN' in os.environ:
         sys.exit("HETZNER_TOKEN environment variable is missing!")
 
     domain = sys.argv[1]

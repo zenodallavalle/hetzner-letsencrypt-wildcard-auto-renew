@@ -20,7 +20,7 @@ $ pip[or pip3] install -r requirements.txt
 ## Configuration
 
 The script is using Hetzner DNS API, so only thing you should provide is token (assign it to `HETZNER_TOKEN` environment variable). You can generate new token at https://dns.hetzner.com/settings/api-token
-To function correctly set `HETZNER_TOKEN` environment variable.
+To function correctly set `HETZNER_TOKEN` environment variable. Alternatively you can create a `.env` file in main directory that contains HETZNER_TOKEN=xxxx. Python-dotenv module will make sure entries in `.env` file are loaded when the script is executed, before importing hetzner.py, that would cause an AssertionError to be raised.
 
 ## Usage
 
@@ -34,5 +34,4 @@ You can run the script monthly. If the certbot-auto returns a `Certificate is no
 
 # Disclaimer
 
-<s>Even though the scripts are used in production on my system and are tested on a Ubuntu 18.04.02 system I do neither claim correctness nor completeness on these scripts. Use at your own risk!</s>
-I didn't test it yet.
+Even though the scripts are used in production on my system and are tested on a Ubuntu 18.04.02 system I do neither claim correctness nor completeness on these scripts. Use at your own risk!

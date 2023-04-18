@@ -20,7 +20,7 @@ def renew(zone, record, domain, test_mode=False):
     record = hetzner.get_acme_record(zone)
 
     child = pexpect.spawn(
-        f"/bin/bash -c 'certbot certonly {test_arg} -d *.{domain} --server https://acme-v02.api.letsencrypt.org/directory --manual --preferred-challenges dns --manual-public-ip-logging-ok'", encoding="utf-8")
+        f"/bin/bash -c 'certbot certonly {test_arg} -d *.{domain} --server https://acme-v02.api.letsencrypt.org/directory --manual --preferred-challenges dns'", encoding="utf-8")
     child.logfile_read = sys.stdout
 
     ex = child.expect([
